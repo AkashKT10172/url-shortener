@@ -8,7 +8,7 @@ router.get('/:shortId', async (req, res) => {
     const entry = await URL.findOneAndUpdate(
         { shortId }, // Query by shortId
         { 
-            $push: { visitHistory: { timestamp: Date.now() } } 
+            $push: { visitHistory: { timeStamp: new Date(Date.now()).toLocaleString() } } 
         },
     );
     if (!entry) {
