@@ -5,6 +5,7 @@ import axios from "axios";
 const App = () => {
   const [url, setUrl] = useState("");
   const [shortUrl, setShortUrl] = useState("");
+  const [copied, setCopied] = useState(false);
 
   const handleFormSubmission = async (e) => {
     e.preventDefault();
@@ -29,6 +30,15 @@ const App = () => {
     }
     setUrl("");
   };
+
+  const copyToClipboard = () => {
+    if (shortUrl) {
+      navigator.clipboard.writeText(`https://url-shortener-36wp.onrender.com/${shortUrl}`);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
+    }
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
       <h1 className="text-3xl font-bold text-gray-800 mb-6">URL SHORTENER</h1>
@@ -54,9 +64,19 @@ const App = () => {
         <div className="mt-4 p-2 bg-green-200 text-green-800 rounded">
           Your Short URL is :{" "}
           <a
+            target="_blank"
             href={`https://url-shortener-36wp.onrender.com/${shortUrl}`}
             className="text-blue-600 underline"
-          >{`https://url-shortener-36wp.onrender.com/${shortUrl}`}</a>
+          >
+            {`https://url-shortener-36wp.onrender.com/${shortUrl}`}
+          </a>
+          <button
+            onClick={copyToClipboard}
+            className="ml-2 px-1 py-1 bg-gray-300 text-gray-800 rounded hover:bg-gray-400 transition cursor-pointer"
+          >
+            📋
+          </button>
+          {copied && <p className="text-sm text-green-600 mt-2 text-center">Copied!</p>}
         </div>
       )}
     </div>
