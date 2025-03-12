@@ -19,7 +19,7 @@ const App = () => {
         },
       };
       const { data } = await axios.post(
-        "http://localhost:5000/url",
+        "https://url-shortener-36wp.onrender.com/url",
         { url },
         config
       );
@@ -54,9 +54,9 @@ const App = () => {
         <div className="mt-4 p-2 bg-green-200 text-green-800 rounded">
           Your Short URL is :{" "}
           <a
-            href={`http://localhost:5000/${shortUrl}`}
+            href={`https://url-shortener-36wp.onrender.com/${shortUrl}`}
             className="text-blue-600 underline"
-          >{`http://localhost:5000/${shortUrl}`}</a>
+          >{`https://url-shortener-36wp.onrender.com/${shortUrl}`}</a>
         </div>
       )}
     </div>
